@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/AsphaltHedgehog/project_auto/static/css/main.d078e7d8.css",
+    "main.js": "/AsphaltHedgehog/project_auto/static/js/main.b26a467c.js",
+    "index.html": "/AsphaltHedgehog/project_auto/index.html",
+    "main.d078e7d8.css.map": "/AsphaltHedgehog/project_auto/static/css/main.d078e7d8.css.map",
+    "main.b26a467c.js.map": "/AsphaltHedgehog/project_auto/static/js/main.b26a467c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d078e7d8.css",
+    "static/js/main.b26a467c.js"
+  ]
+}
