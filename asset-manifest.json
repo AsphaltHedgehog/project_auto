@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/AsphaltHedgehog/project_auto/static/css/main.d078e7d8.css",
-    "main.js": "/AsphaltHedgehog/project_auto/static/js/main.fe5a69f3.js",
-    "index.html": "/AsphaltHedgehog/project_auto/index.html",
-    "main.d078e7d8.css.map": "/AsphaltHedgehog/project_auto/static/css/main.d078e7d8.css.map",
-    "main.fe5a69f3.js.map": "/AsphaltHedgehog/project_auto/static/js/main.fe5a69f3.js.map"
+    "main.css": "/project_auto/static/css/main.d078e7d8.css",
+    "main.js": "/project_auto/static/js/main.c5690332.js",
+    "index.html": "/project_auto/index.html",
+    "main.d078e7d8.css.map": "/project_auto/static/css/main.d078e7d8.css.map",
+    "main.c5690332.js.map": "/project_auto/static/js/main.c5690332.js.map"
   },
   "entrypoints": [
     "static/css/main.d078e7d8.css",
-    "static/js/main.fe5a69f3.js"
+    "static/js/main.c5690332.js"
   ]
 }
