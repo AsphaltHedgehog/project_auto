@@ -7,7 +7,7 @@ const initialState = {
   catalog: [],
 };
 
-const pending = (state, action) => { 
+const pending = (state) => { 
   state.isLoading = true;
 }
 
