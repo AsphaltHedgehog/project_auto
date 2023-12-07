@@ -20,9 +20,9 @@ import {
 import { catalogReducer } from "./catalog/catalog";
 
 const catalogPersistConfig = {
-  key: "catalog",
+  key: "favorite",
   storage,
-  whitelist: ["catalog"]
+  whitelist: ["favorite"]
 };
 
 export const store = configureStore({

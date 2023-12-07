@@ -32,8 +32,9 @@ const catalogSlice = createSlice({
         errored(state, action)
       })
       .addCase(fetchCatalog.fulfilled, (state, action) => {
+        console.log(action);
         state.isLoading = false;
-        state.catalog.push(action.payload);
+        state.catalog.push(...action.payload);
       })
 });
 
