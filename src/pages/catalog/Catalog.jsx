@@ -1,6 +1,8 @@
 // base
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+// operations
 import { fetchCatalog } from "../../redux/catalog/operation";
 
 // selectors
@@ -10,7 +12,7 @@ import { CarCatalog } from "../../redux/catalog/selectors";
 import CarCard from "../../components/carCard/CarCard";
 
 // styled
-
+import { MainSection, LoadMoreBtn } from "./Catalog.styled";
 
 const Catalog = () => {
   const [ page, setPage ] = useState(1)
@@ -24,13 +26,12 @@ const Catalog = () => {
 
   return (
     <>
-      <h1>Catalog Page</h1>
-      <section>
+      <MainSection>
         {catalog.length !== 0 && <CarCard catalog={catalog} />}
-      </section>
       {catalog.length !== page * 12 ? '' :
-        <button onClick={() => setPage(page + 1)}>Load More</button>
+        <LoadMoreBtn onClick={() => setPage(page + 1)}>Load More</LoadMoreBtn>
       }
+      </MainSection>
     </>
   )
 }

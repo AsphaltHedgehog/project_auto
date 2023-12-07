@@ -48,7 +48,7 @@ const CarCard = ({ catalog }) => {
           <p>{car.type} |</p>
           <p>{car.model} |</p>
           <p>{car.mileage} |</p>
-          <p>{car.accessories[1]}</p>
+          <p>{car.accessories[0]}</p>
         </div>
         <button>Learn more</button>
       </li>
@@ -56,7 +56,7 @@ const CarCard = ({ catalog }) => {
   };
 
   return (
-    cards()
+    <ul>{cards()}</ul>
   )
 };
 

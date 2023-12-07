@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const PageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
+// export const PageContainer = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   /* height: 100vh; */
+// `;
 
-export const MainSection = styled.main`
+export const MainSection = styled.div`
   text-align: center;
   max-width: 600px;
 `;

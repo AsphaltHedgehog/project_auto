@@ -2,7 +2,6 @@ import React from "react";
 
 // styled
 import {
-  PageContainer,
   MainSection,
   Section,
   Heading,
@@ -14,7 +13,7 @@ import {
 
 const Home = () => {
   return (
-    <PageContainer>
+    <div>
       <MainSection>
         <Heading>Welcome to "Express Car Rentals"!</Heading>
         <Section>
@@ -53,7 +52,7 @@ const Home = () => {
           </Paragraph>
         </Section>
       </MainSection>
-    </PageContainer>
+    </div>
   );
 }
 
