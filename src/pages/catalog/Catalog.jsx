@@ -25,9 +25,9 @@ const Catalog = () => {
   return (
     <>
       <h1>Catalog Page</h1>
-      <div>
-        <CarCard catalog={catalog} />
-      </div>
+      <section>
+        {catalog.length !== 0 && <CarCard catalog={catalog} />}
+      </section>
       {catalog.length !== page * 12 ? '' :
         <button onClick={() => setPage(page + 1)}>Load More</button>
       }

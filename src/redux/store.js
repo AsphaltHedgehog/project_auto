@@ -14,12 +14,17 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-// slices/reducers
-
-
+// reducers
 import { catalogReducer } from "./catalog/catalog";
+import { favoriteReducer } from "./favorite/favorite";
 
-const catalogPersistConfig = {
+// const catalogPersistConfig = {
+//   key: "favorite",
+//   storage,
+//   whitelist: ["favorite"]
+// };
+
+const favoritePersistConfig = {
   key: "favorite",
   storage,
   whitelist: ["favorite"]
@@ -27,7 +32,8 @@ const catalogPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    catalog: persistReducer(catalogPersistConfig, catalogReducer),
+    catalog: catalogReducer,
+    favorite: persistReducer(favoritePersistConfig, favoriteReducer)
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
