@@ -18,12 +18,6 @@ import {
 import { catalogReducer } from "./catalog/catalog";
 import { favoriteReducer } from "./favorite/favorite";
 
-// const catalogPersistConfig = {
-//   key: "favorite",
-//   storage,
-//   whitelist: ["favorite"]
-// };
-
 const favoritePersistConfig = {
   key: "favorite",
   storage,

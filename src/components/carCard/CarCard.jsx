@@ -10,6 +10,9 @@ import { CarFavorite } from "../../redux/favorite/selectors";
 // svg
 import favoriteSvg from "../../img/Sprite.svg";
 
+// selectors
+import { AdditionalInfo, AdditionalInfoContainer, Button, FavoriteBtn, Img, List, ListItem, MainInfoContainer, Maker, Model, PriceYear, TitleString, AdditionalInfoWrapper } from './CarCard.styled'
+
 
 const CarCard = ({ catalog }) => {
   const dispatch = useDispatch()
@@ -22,8 +25,8 @@ const CarCard = ({ catalog }) => {
 
   const cards = () => {
     return catalog.map((car, i) => (
-      <li key={car.id}>
-        <button onClick={() => handleToggleFavorite(car.id)}>
+      <ListItem key={car.id}>
+        <FavoriteBtn onClick={() => handleToggleFavorite(car.id)}>
           <svg width='18px' height='18px'
             style={favorite.includes(car.id) ?
               { fill: '#3470FF', stroke: '#3470FF' } :
@@ -31,32 +34,34 @@ const CarCard = ({ catalog }) => {
           >
             <use href={`${favoriteSvg}#favoriteSvg`}></use>
           </svg>
-        </button>
-        <img src={car.img} alt={car.description} />
-        <div>
-          <div>
-            <h2>{car.make}</h2>
-            <h3>{car.model},</h3>
-            <p> {car.year}</p>
-          </div>
-          <p>{car.rentalPrice}</p>
-        </div>
-        <div>
-          <p>{car.address.split(', ')[1]} |</p>
-          <p>{car.address.split(', ')[2]} |</p>
-          <p>{car.rentalCompany} |</p>
-          <p>{car.type} |</p>
-          <p>{car.model} |</p>
-          <p>{car.mileage} |</p>
-          <p>{car.accessories[0]}</p>
-        </div>
-        <button>Learn more</button>
-      </li>
+        </FavoriteBtn>
+        <Img src={car.img} alt={car.description} />
+        <MainInfoContainer>
+          <TitleString>
+            <Maker>{car.make}</Maker>
+            <Model>{car.model},</Model>
+            <PriceYear> {car.year}</PriceYear>
+          </TitleString>
+          <PriceYear>{car.rentalPrice}</PriceYear>
+        </MainInfoContainer>
+        <AdditionalInfoWrapper>
+          <AdditionalInfoContainer>
+            <AdditionalInfo>{car.address.split(', ')[1]} |</AdditionalInfo>
+            <AdditionalInfo>{car.address.split(', ')[2]} |</AdditionalInfo>
+            <AdditionalInfo>{car.rentalCompany} |</AdditionalInfo>
+            <AdditionalInfo>{car.type} |</AdditionalInfo>
+            <AdditionalInfo>{car.model} |</AdditionalInfo>
+            <AdditionalInfo>{car.mileage} |</AdditionalInfo>
+            <AdditionalInfo>{car.accessories[0]}</AdditionalInfo>
+          </AdditionalInfoContainer>
+          <Button>Learn more</Button>
+        </AdditionalInfoWrapper>
+      </ListItem>
     ));
   };
 
   return (
-    <ul>{cards()}</ul>
+    <List>{cards()}</List>
   )
 };
 
