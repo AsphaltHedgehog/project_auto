@@ -1,38 +1,18 @@
 import styled from "styled-components";
 
 // main ul styles
-export const List = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 59px;
-  column-gap: 29px;
-
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`
-
-export const ListItem = styled.li`
-  width: 274px;
-  height: 426px;
+export const Wrapper = styled.div`
+  width: 541px;
+  padding: 40px;
 
   position: relative;
 `
 
 // card styles
-export const FavoriteBtn = styled.button`
-  background-color: transparent;
-  border: none;
-
-  position: absolute;
-  top: 14px;
-  right: 14px;
-`
-
 export const Img = styled.img`
   display: block;
-  width: 274px;
-  height: 268px;
+  width: 100%;
+  height: 248px;
 
   border-radius: 14px;
 
@@ -43,7 +23,7 @@ export const Img = styled.img`
 
 // main info string
 export const MainInfoContainer = styled.div`
-  width: 265px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,35 +38,29 @@ export const TitleString = styled.div`
 `
 
 export const Maker = styled.h2`
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   font-weight: 500;
   color: #121417;
 
   margin: 0;
-
-  max-width: 75px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 `
 
 export const Model = styled.h3`
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   font-weight: 500;
   color: #3470FF;
 
   margin: 0;
-
-  max-width: 75px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  &::after {
+    color: #121417;
+    content: ',';
+  }
 `
 
-export const PriceYear = styled.p`
-  font-size: 16px;
+export const Year = styled.p`
+  font-size: 18px;
   line-height: 1.5;
   font-weight: 500;
   color: #121417;
@@ -97,15 +71,16 @@ export const PriceYear = styled.p`
 // additional info string
 
 export const AdditionalInfoWrapper = styled.div`
-  height: 110px;
   display: flex;
   flex-direction: column;
 
   justify-content: space-between;
+
+  margin-bottom: 14px;
 `
 
 export const AdditionalInfoContainer = styled.div`
-  width: 270px;
+  width: 277px;
 
   display: flex;
   flex-wrap: wrap;
@@ -113,6 +88,54 @@ export const AdditionalInfoContainer = styled.div`
 `
 
 export const AdditionalInfo = styled.p`
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #12141780;
+
+  margin: 0;
+`
+
+// description
+
+export const Description = styled.p`
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #121417;
+
+  margin-top: 0;
+  margin-bottom: 24px;
+`
+
+// Accessories and functionalities
+
+export const WrapperAccFunc = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-bottom: 24px;
+`
+
+export const AccFuncHeader = styled.h3`
+  font-size: 14px;
+  color: #121417;
+  line-height: 1.5;
+  font-weight: 500;
+
+  margin: 0;
+`
+
+export const AccFuncInfoContainer = styled.div`
+  width: 343px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+`
+
+export const AccFuncInfo = styled.p`
   font-size: 12px;
   line-height: 1.5;
   font-weight: 400;

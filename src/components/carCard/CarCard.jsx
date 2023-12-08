@@ -1,4 +1,5 @@
 // base
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // slice
@@ -7,16 +8,21 @@ import { setFavorite } from "../../redux/favorite/favorite";
 // selector
 import { CarFavorite } from "../../redux/favorite/selectors";
 
+// modal
+import Modal from "../modal/Modal";
+
 // svg
 import favoriteSvg from "../../img/Sprite.svg";
 
-// selectors
+// styled
 import { AdditionalInfo, AdditionalInfoContainer, Button, FavoriteBtn, Img, List, ListItem, MainInfoContainer, Maker, Model, PriceYear, TitleString, AdditionalInfoWrapper } from './CarCard.styled'
 
 
 const CarCard = ({ catalog }) => {
   const dispatch = useDispatch()
   const favorite = useSelector(CarFavorite)
+  const [isOpened, setToggleModal] = useState(false)
+  const [carInfo, setCarInfo] = useState({})
 
 
   const handleToggleFavorite = (id) => {
@@ -54,14 +60,20 @@ const CarCard = ({ catalog }) => {
             <AdditionalInfo>{car.mileage} |</AdditionalInfo>
             <AdditionalInfo>{car.accessories[0]}</AdditionalInfo>
           </AdditionalInfoContainer>
-          <Button>Learn more</Button>
+          <Button onClick={() => {
+            setCarInfo(car)
+            setToggleModal(true)
+          }}>Learn more</Button>
         </AdditionalInfoWrapper>
       </ListItem>
     ));
   };
 
   return (
-    <List>{cards()}</List>
+    <>
+      <List>{cards()}</List>
+      {isOpened && <Modal children={carInfo} closeModal={setToggleModal} />}
+    </>
   )
 };
 
