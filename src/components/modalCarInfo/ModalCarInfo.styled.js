@@ -144,15 +144,66 @@ export const AccFuncInfo = styled.p`
   margin: 0;
 `
 
+// conditions
+export const ConditionWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-bottom: 24px;
+`
+
+export const ConditionHeader = styled.h3`
+  font-size: 14px;
+  color: #121417;
+  line-height: 1.5;
+  font-weight: 500;
+
+  margin: 0;
+`
+
+export const ConditionInfoWrapper = styled.div`
+  width: 100%;
+
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+`
+
+export const ConditionInfoContainer = styled.div`
+  background-color: #F9F9F9;
+  padding: 7px 14px;
+  border-radius: 35px;
+`
+
+export const ConditionInfo = styled.p`
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+  
+  margin: 0;
+
+  color: #363535;
+`
+
+export const ConditionValue = styled.span`
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #3470FF;
+`
+
 // button
 
 export const Button = styled.button`
-  width: 100%;
+  min-width: 168px;
+  max-width: 350px;
 
   background-color: #3470FF;
   border: none;
   border-radius: 12px;
-  padding: 12px 99px;
+  padding: 12px 50px;
 
   color: #FFFFFF;
   font-size: 14px;

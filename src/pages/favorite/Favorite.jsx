@@ -24,7 +24,6 @@ const Favorite = () => {
 
   const searchFavorites = () => { 
     const arrayOfFavorites = catalog.filter(car => favorite.includes(car.id));
-    console.log(arrayOfFavorites);
     return arrayOfFavorites;
   };
 

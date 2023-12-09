@@ -30,7 +30,7 @@ const CarCard = ({ catalog }) => {
   }
 
   const cards = () => {
-    return catalog.map((car, i) => (
+    return catalog.map((car) => (
       <ListItem key={car.id}>
         <FavoriteBtn onClick={() => handleToggleFavorite(car.id)}>
           <svg width='18px' height='18px'

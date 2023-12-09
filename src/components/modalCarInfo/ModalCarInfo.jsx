@@ -1,9 +1,40 @@
+// base
+import { useState } from 'react';
+
 // styled
-import { AdditionalInfo, AdditionalInfoContainer, Button,  Img,  Wrapper, MainInfoContainer, Maker, Model, Year, TitleString, AdditionalInfoWrapper, Description, WrapperAccFunc, AccFuncHeader, AccFuncInfoContainer, AccFuncInfo } from './ModalCarInfo.styled'
+import { AdditionalInfo, AdditionalInfoContainer, Button, Img, Wrapper, MainInfoContainer, Maker, Model, Year, TitleString, AdditionalInfoWrapper, Description, WrapperAccFunc, AccFuncHeader, AccFuncInfoContainer, AccFuncInfo, ConditionWrapper, ConditionHeader, ConditionInfoWrapper, ConditionInfoContainer, ConditionInfo, ConditionValue } from './ModalCarInfo.styled'
 
 
 const CarModalInfo = ({ carInfo }) => {
-  console.log(carInfo);
+  const [RentalPhone, setRentalPhone] = useState(false);
+
+  const pidorasina = () => {
+    const rentalConditionArray = carInfo.rentalConditions.split('\n');
+
+    const RentalConditionsElements = rentalConditionArray.map((item) => {
+      const split = item.split(': ');
+
+      if (split.length === 2) {
+        const value = <ConditionValue>{split[1]}</ConditionValue>;
+        return (<ConditionInfoContainer key={split[0]}>
+          <ConditionInfo>{split[0]}: {value}</ConditionInfo>
+        </ConditionInfoContainer>)
+      } else {
+        return (<ConditionInfoContainer key={split[0]}><ConditionInfo>{split[0]}</ConditionInfo></ConditionInfoContainer>)
+      }
+    });
+
+    return RentalConditionsElements;
+  };
+
+  const Pidorasina2 = (distance) => {
+    const numberString = distance.toString();
+
+    const formattedInteger = numberString.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    return formattedInteger;
+  };
+
   const carInfoRenderer = () => {
     return (
       <Wrapper key={carInfo.id}>
@@ -38,7 +69,17 @@ const CarModalInfo = ({ carInfo }) => {
             <AccFuncInfo>{ carInfo.functionalities[2] } </AccFuncInfo>
           </AccFuncInfoContainer>
         </WrapperAccFunc>
-          <Button onClick={() => {}}>Rental car</Button>
+        <ConditionWrapper>
+          <ConditionHeader>
+            Rental Conditions:
+          </ConditionHeader>
+          <ConditionInfoWrapper>
+            {pidorasina()}
+            <ConditionInfoContainer><ConditionInfo>Mileage: <ConditionValue>{Pidorasina2(carInfo.mileage)}</ConditionValue></ConditionInfo></ConditionInfoContainer>
+            <ConditionInfoContainer><ConditionInfo>Price: <ConditionValue>{ carInfo.rentalPrice }</ConditionValue></ConditionInfo></ConditionInfoContainer>
+          </ConditionInfoWrapper>
+        </ConditionWrapper>
+          <Button onClick={() => {setRentalPhone(true)}}>{RentalPhone ? '+380730000000' : 'Rental car'}</Button>
       </Wrapper>
     );
   };

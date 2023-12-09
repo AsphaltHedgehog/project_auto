@@ -33,7 +33,11 @@ const catalogSlice = createSlice({
       })
       .addCase(fetchCatalog.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.catalog.push(...action.payload);
+        if (action.meta.arg.page === 1) {
+          state.catalog = action.payload;
+        } else {
+          state.catalog.push(...action.payload);
+        }
       })
 });
 
