@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 
 const Filter = ({ catalog, setFilter }) => {
   const [selectedCarBrand, setSelectedCarBrand] = useState('All');
   const [selectedCarPrice, setSelectedCarPrice] = useState('All');
+  const [selectedCarMileageFrom, setSelectedCarMileageFrom] = useState('');
+  const [selectedCarMileageTo, setSelectedCarMileageTo] = useState('');
+
+
+  useEffect(() => {
+    setFilter(catalog);
+  }, [catalog, setFilter]);
   
   const renderCarBrands = (catalog) => {
     const uniqueBrands = Array.from(new Set(catalog.map(car => car.make)));
@@ -25,6 +32,12 @@ const Filter = ({ catalog, setFilter }) => {
       case 'carPrice':
         setSelectedCarPrice(event.target.value);
         break;
+      case 'mileageFrom':
+        setSelectedCarMileageFrom(event.target.value);
+        break
+      case 'mileageTo':
+        setSelectedCarMileageTo(event.target.value);
+        break
       default:
         break;
     }
@@ -35,6 +48,8 @@ const Filter = ({ catalog, setFilter }) => {
     const filteredObject = {
       brand: selectedCarBrand,
       price: selectedCarPrice,
+      mileageFrom: selectedCarMileageFrom,
+      mileageTo: selectedCarMileageTo
     }
 
     setFilter(applyFilter(catalog, filteredObject));
@@ -43,18 +58,26 @@ const Filter = ({ catalog, setFilter }) => {
   const applyFilter = (catalog, filteredObject) => {
     // filtering and returning
     return catalog.filter(car => {
+
+      // filter by brand
+      const brand = filteredObject.brand === 'All' || car.make === filteredObject.brand;
+      
       // replace non numeric characters with empty string
       const priceNumber = parseInt(car.rentalPrice.replace(/\D/g, ''));
-        // filter by brand
-      const brand = filteredObject.brand === 'All' || car.make === filteredObject.brand;
       // filter by price
       const price =
-        filteredObject.price === 'All' || (filteredObject.price === '200+' ? priceNumber >= 200 : priceNumber === Number(filteredObject.price));
+        filteredObject.price === 'All' ||
+        (filteredObject.price === '200+' ? priceNumber >= 200 : (priceNumber >= parseInt(filteredObject.price) && priceNumber <= (parseInt(filteredObject.price) + 9)));
       
+      // filter by mileage
+      const mileageFrom = filteredObject.mileageFrom === '' || car.mileage >= parseInt(filteredObject.mileageFrom);
+
+      const mileageTo = filteredObject.mileageTo === '' || car.mileage <= parseInt(filteredObject.mileageTo);
       // return result 
-      return brand && price;
-      }
-  )};
+      return brand && price && mileageFrom && mileageTo;
+    }
+    );
+  };
   
   return (
     <form onSubmit={handleSubmit}>
@@ -82,6 +105,11 @@ const Filter = ({ catalog, setFilter }) => {
           <option value='150'>$150</option>
           <option value='200+'>$200+</option>
         </select>
+      </label>
+      <label>
+        Сar mileage / km
+        <input type="number" name="mileageFrom" value={selectedCarMileageFrom} onChange={handleSelectChange}></input>
+        <input type="number" name="mileageTo" value={selectedCarMileageTo} onChange={handleSelectChange}></input>
       </label>
       <button type="submit">Search</button>
     </form>

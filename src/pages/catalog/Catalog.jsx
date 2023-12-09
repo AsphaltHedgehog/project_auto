@@ -19,18 +19,12 @@ const Catalog = () => {
   const [ page, setPage ] = useState(1)
   const dispatch = useDispatch(fetchCatalog);
   const catalog = useSelector(CarCatalog);
-  const [filteredCatalog, setFilteredCatalog] = useState(catalog);
+  const [filteredCatalog, setFilteredCatalog] = useState([]);
 
   // fetch catalog
   useEffect(() => {
     dispatch(fetchCatalog({ page: page, limit: 12 }));
   }, [page, dispatch]);
-
-
-  // update filter
-  useEffect(() => { 
-    setFilteredCatalog(catalog);
-  }, [catalog]);
 
   return (
     <>
