@@ -199,11 +199,12 @@ export const ConditionValue = styled.span`
 export const Button = styled.button`
   min-width: 168px;
   max-width: 350px;
+  padding: 12px 50px;
 
   background-color: #3470FF;
   border: none;
+  outline: none;
   border-radius: 12px;
-  padding: 12px 50px;
 
   color: #FFFFFF;
   font-size: 14px;
@@ -212,7 +213,9 @@ export const Button = styled.button`
 
   transition: background-color 250ms ease-in ;
 
-  &:hover {
+  cursor: pointer;
+
+  &:hover, &:focus {
     background-color: #0B44CD;
   }
 `

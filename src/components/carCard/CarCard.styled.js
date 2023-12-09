@@ -138,7 +138,9 @@ export const Button = styled.button`
 
   transition: background-color 250ms ease-in ;
 
-  &:hover {
+  cursor: pointer;
+
+  &:hover, &:focus {
     background-color: #0B44CD;
   }
 `

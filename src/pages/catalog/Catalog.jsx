@@ -17,7 +17,7 @@ import Filter from "../../shared/filterForm/FilterForm";
 
 const Catalog = () => {
   const [ page, setPage ] = useState(1)
-  const dispatch = useDispatch(fetchCatalog);
+  const dispatch = useDispatch();
   const catalog = useSelector(CarCatalog);
   const [filteredCatalog, setFilteredCatalog] = useState([]);
 
@@ -31,7 +31,7 @@ const Catalog = () => {
       <MainSection>
         {catalog.length !== 0 &&
           <>
-          <Filter catalog={catalog} setFilter={ setFilteredCatalog } />
+          <Filter catalog={catalog} setFilter={setFilteredCatalog} setPage={setPage} />
           <CarCard catalog={filteredCatalog}/>
           </>
           }
