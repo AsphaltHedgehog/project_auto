@@ -13,21 +13,34 @@ import CarCard from "../../components/carCard/CarCard";
 
 // styled
 import { MainSection, LoadMoreBtn } from "./Catalog.styled";
+import Filter from "../../shared/filterForm/FilterForm";
 
 const Catalog = () => {
   const [ page, setPage ] = useState(1)
   const dispatch = useDispatch(fetchCatalog);
   const catalog = useSelector(CarCatalog);
+  const [filteredCatalog, setFilteredCatalog] = useState(catalog);
 
+  // fetch catalog
   useEffect(() => {
-    dispatch(fetchCatalog({page: page, limit: 12}));
+    dispatch(fetchCatalog({ page: page, limit: 12 }));
   }, [page, dispatch]);
-  
+
+
+  // update filter
+  useEffect(() => { 
+    setFilteredCatalog(catalog);
+  }, [catalog]);
 
   return (
     <>
       <MainSection>
-        {catalog.length !== 0 && <CarCard catalog={catalog} />}
+        {catalog.length !== 0 &&
+          <>
+          <Filter catalog={catalog} setFilter={ setFilteredCatalog } />
+          <CarCard catalog={filteredCatalog}/>
+          </>
+          }
       {catalog.length !== page * 12 ? '' :
         <LoadMoreBtn onClick={() => setPage(page + 1)}>Load More</LoadMoreBtn>
       }
