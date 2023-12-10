@@ -1,6 +1,26 @@
+// base
+import { useEffect, useState } from "react";
+
+// styles 
+import { Input, Label, Svg} from "./CarBrandSelect.styled";
+
+// svg
+import svg from '../../../img/Sprite.svg'
+
+const CarBrandSelector = ({ catalog, selectedCarBrand, handleSelectChange }) => {
+  
+  const [isFocused, setIsFocused] = useState(false)
 
 
-const CarBrandSelector = ({catalog, selectedCarBrand, handleSelectChange}) => {
+
+  useEffect(() => {
+    const myElement = document.getElementById('rotate');
+    if (isFocused) {
+      myElement.classList.add('selected');
+    } else {
+      myElement.classList.remove('selected');
+    }
+  },[isFocused])
 
   const renderCarBrands = (catalog) => {
     const uniqueBrands = Array.from(new Set(catalog.map(car => car.make)));
@@ -14,13 +34,21 @@ const CarBrandSelector = ({catalog, selectedCarBrand, handleSelectChange}) => {
   };
 
   return(
-    <label >
+    <Label>
         Car Brand
-        <select name='carBrand' value={selectedCarBrand} onChange={handleSelectChange}>
-          <option value='All'>Select car brand</option>
+      <Input name='carBrand' value={selectedCarBrand} onChange={handleSelectChange}
+        onBlur={() => setIsFocused(false)}
+        onClick={() => setIsFocused(!isFocused)}
+      >
+          <option value='All' className="option">Select car brand</option>
           {renderCarBrands(catalog)}
-        </select>
-      </label>
+      </Input>
+      <Svg height={25} width={25} id="rotate"
+      >
+        <use href={`${svg}#selectArrow`}>
+        </use>
+      </Svg>
+      </Label>
   )
 }
 
