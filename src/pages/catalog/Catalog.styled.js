@@ -30,6 +30,8 @@ export const LoadMoreBtn = styled.button`
 
   transition: color 250ms ease-in ;
 
+  cursor: pointer;
+
   &:hover { 
     color: #0B44CD;
   }

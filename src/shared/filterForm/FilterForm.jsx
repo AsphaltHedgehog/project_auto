@@ -12,7 +12,7 @@ import formSubmitHandler from "./FormActions/formSubmitHandler";
 import { FormWrapper, FormBtn } from "./FilterForm.styled";
 
 
-const Filter = ({ catalog, setFilter, setPage }) => {
+const Filter = ({ catalog, setFilter, setPage, page }) => {
   // // hooks
   const dispatch = useDispatch();
 
@@ -23,8 +23,11 @@ const Filter = ({ catalog, setFilter, setPage }) => {
   const [selectedCarMileageTo, setSelectedCarMileageTo] = useState('');
   
   useEffect(() => {
+    if (catalog.length > 12 && page === 1) {
+      return
+    }
     setFilter(catalog);
-  }, [catalog, setFilter]);
+  }, [catalog, page, setFilter]);
   
   const handleSelectChange = (event) => {
     switch (event.target.name) {
@@ -50,7 +53,7 @@ const Filter = ({ catalog, setFilter, setPage }) => {
     price: selectedCarPrice,
     mileageFrom: selectedCarMileageFrom,
     mileageTo: selectedCarMileageTo
-  }
+  };
   
   return (
     <FormWrapper onSubmit={(event) => formSubmitHandler(event, filteredObject, dispatch, setPage, catalog, setFilter)}>

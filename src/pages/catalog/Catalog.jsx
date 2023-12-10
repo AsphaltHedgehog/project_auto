@@ -20,6 +20,8 @@ const Catalog = () => {
   const dispatch = useDispatch();
   const catalog = useSelector(CarCatalog);
   const [filteredCatalog, setFilteredCatalog] = useState([]);
+  // console.log('Каталог', catalog);
+  // console.log('Фильтеред каталог', filteredCatalog);
 
   // fetch catalog
   useEffect(() => {
@@ -31,7 +33,7 @@ const Catalog = () => {
       <MainSection>
         {catalog.length !== 0 &&
           <>
-          <Filter catalog={catalog} setFilter={setFilteredCatalog} setPage={setPage} />
+          <Filter catalog={catalog} setFilter={setFilteredCatalog} setPage={setPage} page={ page } />
           <CarCard catalog={filteredCatalog}/>
           </>
           }

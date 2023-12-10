@@ -26,11 +26,26 @@ export const ListItem = styled.li`
 // card styles
 export const FavoriteBtn = styled.button`
   background-color: transparent;
+  border-radius: 30px;
   border: none;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+  padding-top: 2px;
+  
+  cursor: pointer;
 
   position: absolute;
   top: 14px;
   right: 14px;
+
+  transition: background-color 100ms ease-in;
+
+  &:active {
+    background-color: #80808080;
+  }
 `
 
 export const Img = styled.img`

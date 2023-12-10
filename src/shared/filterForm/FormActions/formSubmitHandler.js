@@ -1,33 +1,30 @@
-
 // operations
 import { fetchCatalog } from '../../../redux/catalog/operation'
 
-const formSubmitHandler = (event, filteredObject, dispatch, setPage, catalog, setFilter) => {
+const formSubmitHandler =  (event, filteredObject, dispatch, setPage, catalog, setFilter) => {
 
-  const handleSubmit = async (event, filteredObject, dispatch, setPage, catalog, setFilter) => {
+  const handleSubmit =  async (event, filteredObject, dispatch, setPage, catalog, setFilter) => {
     event.preventDefault();
     const { brand, price, mileageFrom, mileageTo } = filteredObject
-    // const filteredObject = {
-    //   brand: selectedCarBrand,
-    //   price: selectedCarPrice,
-    //   mileageFrom: selectedCarMileageFrom,
-    //   mileageTo: selectedCarMileageTo
-    // }
   
-    if (brand === 'All' && price === 'All' && mileageFrom === '' && mileageTo === '') {
-      setPage(1)
-      await dispatch(fetchCatalog({ page: 1, limit: 12 }));
-    } else {
-      await dispatch(fetchCatalog({ page: 1, limit: 50 }));
+    try {
+      if (brand === 'All' && price === 'All' && mileageFrom === '' && mileageTo === '') {
+        setPage(1)
+        const { payload }= await dispatch(fetchCatalog({ page: 1, limit: 12 }));
+        setFilter(prevCatalog => applyFilter(payload, filteredObject));
+      } else {
+        const { payload } = await dispatch(fetchCatalog({ page: 1, limit: 50 }));
+        setFilter(prevCatalog => applyFilter(payload, filteredObject));
+      }
+    } catch (error) {
+      console.log(error);
     }
-
-    setFilter(applyFilter(catalog, filteredObject));
   };
 
   const applyFilter = (catalog, filteredObject) => {
     const { brand, price, mileageFrom, mileageTo } = filteredObject
     // filtering and returning
-    return catalog.filter(car => {
+    const result = catalog.filter(car => {
       // filter by brand
       const filBrand = brand === 'All' || car.make === brand;
       // replace non numeric characters with empty string
@@ -45,6 +42,8 @@ const formSubmitHandler = (event, filteredObject, dispatch, setPage, catalog, se
       return filBrand && filPrice && filMileageFrom && filMileageTo;
     }
     );
+
+    return result;
   };
 
   handleSubmit(event, filteredObject, dispatch, setPage, catalog, setFilter);

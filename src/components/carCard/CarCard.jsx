@@ -24,7 +24,6 @@ const CarCard = ({ catalog }) => {
   const [isOpened, setToggleModal] = useState(false)
   const [carInfo, setCarInfo] = useState({})
 
-
   const handleToggleFavorite = (id) => {
     dispatch(setFavorite(id))
   }

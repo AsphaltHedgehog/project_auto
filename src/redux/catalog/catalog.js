@@ -43,7 +43,6 @@ const catalogSlice = createSlice({
             state.catalog = action.payload;
           }
         } else {
-          console.log('Сработала типа пагинация');
           state.catalog.push(...action.payload);
         }
       })
