@@ -25,8 +25,7 @@ const Favorite = () => {
   const [filteredCatalog, setFilteredCatalog] = useState([]);
 
   useEffect(() => {
-    console.log(1);
-    dispatch(fetchCatalog({ page: page, limit: 32 }));
+    dispatch(fetchCatalog({ page: page, limit: 50 }));
   }, [dispatch, page]);
 
 

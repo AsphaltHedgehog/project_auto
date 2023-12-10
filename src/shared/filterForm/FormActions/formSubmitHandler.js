@@ -18,7 +18,7 @@ const formSubmitHandler = (event, filteredObject, dispatch, setPage, catalog, se
       setPage(1)
       await dispatch(fetchCatalog({ page: 1, limit: 12 }));
     } else {
-      await dispatch(fetchCatalog({ page: 1, limit: 32 }));
+      await dispatch(fetchCatalog({ page: 1, limit: 50 }));
     }
 
     setFilter(applyFilter(catalog, filteredObject));

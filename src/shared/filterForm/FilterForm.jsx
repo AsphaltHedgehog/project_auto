@@ -55,7 +55,7 @@ const Filter = ({ catalog, setFilter, setPage }) => {
   return (
     <FormWrapper onSubmit={(event) => formSubmitHandler(event, filteredObject, dispatch, setPage, catalog, setFilter)}>
       {/* Brand selector */}
-      <CarBrandSelector catalog={catalog} selectedCarBrand={selectedCarBrand} handleSelectChange={handleSelectChange} />
+      <CarBrandSelector selectedCarBrand={selectedCarBrand} handleSelectChange={handleSelectChange} />
       {/* Price selector */}
       <CarPriceSelector selectedCarPrice={selectedCarPrice} handleSelectChange={handleSelectChange} />
       {/* Mileage inputs */}

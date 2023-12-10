@@ -10,6 +10,10 @@ export const List = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
+
+  margin-right: auto;
+  margin-left: auto;
+  width: 880px;
 `
 
 export const ListItem = styled.li`

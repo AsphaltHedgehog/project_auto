@@ -1,5 +1,12 @@
 // base
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+// selector
+import { CarBrands } from "../../../redux/catalog/selectors";
+
+// operation
+import { fetchCatalog } from "../../../redux/catalog/operation";
 
 // styles 
 import { Input, Label, Svg} from "./CarBrandSelect.styled";
@@ -7,8 +14,10 @@ import { Input, Label, Svg} from "./CarBrandSelect.styled";
 // svg
 import svg from '../../../img/Sprite.svg'
 
-const CarBrandSelector = ({ catalog, selectedCarBrand, handleSelectChange }) => {
-  
+
+const CarBrandSelector = ({ selectedCarBrand, handleSelectChange }) => {
+  const carBrands = useSelector(CarBrands);
+  const dispatch = useDispatch();
   const [isFocused, setIsFocused] = useState(false)
 
 
@@ -20,10 +29,15 @@ const CarBrandSelector = ({ catalog, selectedCarBrand, handleSelectChange }) => 
     } else {
       myElement.classList.remove('selected');
     }
-  },[isFocused])
+  }, [isFocused])
+  
+    // fetching all brands
+  useEffect(() => {
+    dispatch(fetchCatalog({ page: 1, limit: 32 }));
+  },[dispatch])
 
-  const renderCarBrands = (catalog) => {
-    const uniqueBrands = Array.from(new Set(catalog.map(car => car.make)));
+  const renderCarBrands = (brands) => {
+    const uniqueBrands = Array.from(new Set(brands.map(car => car.make)));
     return uniqueBrands.map(car => {
       return (
         <option key={car} value={car}>
@@ -41,7 +55,7 @@ const CarBrandSelector = ({ catalog, selectedCarBrand, handleSelectChange }) => 
         onClick={() => setIsFocused(!isFocused)}
       >
           <option value='All' className="option">Select car brand</option>
-          {renderCarBrands(catalog)}
+          {renderCarBrands(carBrands)}
       </Input>
       <Svg height={25} width={25} id="rotate"
       >

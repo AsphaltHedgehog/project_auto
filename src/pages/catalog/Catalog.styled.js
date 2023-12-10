@@ -10,12 +10,15 @@ export const MainSection = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 100px;
+  margin-bottom: 80px;
+
+  width: 1184px;
 `;
 
 export const LoadMoreBtn = styled.button`
   width: 90px;
   padding: 0;
-  margin-bottom: 150px;
+  margin-bottom: 20px;
 
   font-size: 16px;
   color: #3470FF;

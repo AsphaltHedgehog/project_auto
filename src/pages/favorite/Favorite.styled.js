@@ -10,4 +10,6 @@ export const MainSection = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 100px;
+
+  margin-bottom: 120px;
 `;

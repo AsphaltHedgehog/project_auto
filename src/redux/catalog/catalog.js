@@ -8,6 +8,7 @@ const initialState = {
   isLoading: false,
   error: false,
   catalog: [],
+  brands: [],
 };
 
 const pending = (state) => { 
@@ -34,8 +35,15 @@ const catalogSlice = createSlice({
       .addCase(fetchCatalog.fulfilled, (state, action) => {
         state.isLoading = false;
         if (action.meta.arg.page === 1) {
-          state.catalog = action.payload;
+          if (action.meta.arg.limit === 32) {
+            state.brands = action.payload;
+          } else if (action.meta.arg.limit === 12) {
+            state.catalog = action.payload;
+          } else {
+            state.catalog = action.payload;
+          }
         } else {
+          console.log('Сработала типа пагинация');
           state.catalog.push(...action.payload);
         }
       })
