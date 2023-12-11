@@ -34,7 +34,7 @@ const CarCard = ({ catalog }) => {
 
   const handleToggleFavorite = (id) => {
     dispatch(setFavorite(id))
-    if (favorite.includes(id)) {
+    if (!favorite.includes(id)) {
       successAddFavoriteNotify()
     } else {
       successRemoveFavoriteNotify()

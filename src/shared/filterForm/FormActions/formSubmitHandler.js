@@ -47,9 +47,9 @@ const formSubmitHandler = (event, filteredObject, dispatch, setPage, catalog, se
         (price === '200+' ? priceNumber >= 200 : (priceNumber >= parseInt(price) && priceNumber <= (parseInt(price) + 9)));
       
       // filter by mileage
-      const filMileageFrom = mileageFrom === '' || car.mileage >= parseInt(mileageFrom);
+      const filMileageFrom = mileageFrom === '' || car.mileage >= parseInt(mileageFrom.replace(/,/g, ''));
 
-      const filMileageTo = mileageTo === '' || car.mileage <= parseInt(mileageTo);
+      const filMileageTo = mileageTo === '' || car.mileage <= parseInt(mileageTo.replace(/,/g, ''));
       // return result 
       return filBrand && filPrice && filMileageFrom && filMileageTo;
     }
