@@ -1,12 +1,21 @@
 // operations
-import { fetchCatalog } from '../../../redux/catalog/operation'
+import { fetchCatalog } from '../../../redux/catalog/operation';
 
-const formSubmitHandler =  (event, filteredObject, dispatch, setPage, catalog, setFilter) => {
+// toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-  const handleSubmit =  async (event, filteredObject, dispatch, setPage, catalog, setFilter) => {
+const formSubmitHandler = (event, filteredObject, dispatch, setPage, catalog, setFilter) => {
+  // toast
+  const successFoundNotify = (cars) => toast.success(`We found ${cars.length} car`);
+  const ResetFilterNotify = () => toast.success(`Filter reset`);
+  const lowFoundNotify = (cars) => toast.warn(`We found ${cars.length}car`);
+  const emptyFoundNotify = () => toast.error(`No cars found with your filters`);
+
+  // first submit checks, if there is no filter load first page
+  const handleSubmit =  async (event, filteredObject, dispatch, setPage, catalog ,setFilter) => {
     event.preventDefault();
     const { brand, price, mileageFrom, mileageTo } = filteredObject
-  
     try {
       if (brand === 'All' && price === 'All' && mileageFrom === '' && mileageTo === '') {
         setPage(1)
@@ -14,12 +23,15 @@ const formSubmitHandler =  (event, filteredObject, dispatch, setPage, catalog, s
         setFilter(prevCatalog => applyFilter(payload, filteredObject));
       } else {
         const { payload } = await dispatch(fetchCatalog({ page: 1, limit: 50 }));
+
         setFilter(prevCatalog => applyFilter(payload, filteredObject));
       }
     } catch (error) {
-      console.log(error);
+      toast.error('Server error');
     }
   };
+
+  // filtering results
 
   const applyFilter = (catalog, filteredObject) => {
     const { brand, price, mileageFrom, mileageTo } = filteredObject
@@ -43,6 +55,21 @@ const formSubmitHandler =  (event, filteredObject, dispatch, setPage, catalog, s
     }
     );
 
+    // notify
+    if (filteredObject.brand === 'All' && filteredObject.price === 'All' && filteredObject.mileageFrom === '' && filteredObject.mileageTo === '') {
+      ResetFilterNotify()
+    } else if (event.target.action.includes('favorite')) {
+      // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    } else {
+      if (result.length === 0) {
+        emptyFoundNotify();
+      } else if (result.length > 3) {
+        successFoundNotify(result);
+      } else {
+        lowFoundNotify(result);
+      }
+    }
+    
     return result;
   };
 
@@ -50,3 +77,5 @@ const formSubmitHandler =  (event, filteredObject, dispatch, setPage, catalog, s
 };
 
 export default formSubmitHandler;
+
+

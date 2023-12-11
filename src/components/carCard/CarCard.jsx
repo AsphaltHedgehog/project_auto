@@ -17,6 +17,10 @@ import favoriteSvg from "../../img/Sprite.svg";
 // styled
 import { AdditionalInfo, AdditionalInfoContainer, Button, FavoriteBtn, Img, List, ListItem, MainInfoContainer, Maker, Model, PriceYear, TitleString, AdditionalInfoWrapper } from './CarCard.styled'
 
+// toast
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const CarCard = ({ catalog }) => {
   const dispatch = useDispatch()
@@ -24,8 +28,18 @@ const CarCard = ({ catalog }) => {
   const [isOpened, setToggleModal] = useState(false)
   const [carInfo, setCarInfo] = useState({})
 
+  // notify
+  const successAddFavoriteNotify = () => toast.success(`Added to favorites!`);
+  const successRemoveFavoriteNotify = () => toast.warn(`Removed from favorites!`);
+
   const handleToggleFavorite = (id) => {
     dispatch(setFavorite(id))
+    if (favorite.includes(id)) {
+      successAddFavoriteNotify()
+    } else {
+      successRemoveFavoriteNotify()
+    }
+    
   }
 
   const cards = () => {

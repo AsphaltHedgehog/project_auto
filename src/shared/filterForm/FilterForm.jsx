@@ -38,10 +38,12 @@ const Filter = ({ catalog, setFilter, setPage, page }) => {
         setSelectedCarPrice(event.target.value);
         break;
       case 'mileageFrom':
-        setSelectedCarMileageFrom(event.target.value);
+        const formattedNumberFrom = event.target.value.replace(/,/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        setSelectedCarMileageFrom(formattedNumberFrom)
         break
       case 'mileageTo':
-        setSelectedCarMileageTo(event.target.value);
+        const formattedNumberTo = event.target.value.replace(/,/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        setSelectedCarMileageTo(formattedNumberTo)
         break
       default:
         break;

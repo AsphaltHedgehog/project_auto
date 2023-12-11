@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCatalog } from "../../redux/catalog/operation";
 
 // selectors
-import { CarCatalog } from "../../redux/catalog/selectors";
+import { CarCatalog, isLoading } from "../../redux/catalog/selectors";
 import { CarFavorite } from "../../redux/favorite/selectors";
 
 // components 
@@ -16,12 +16,19 @@ import Filter from "../../shared/filterForm/FilterForm";
 // styled
 import { MainSection } from './Favorite.styled'
 
+// loader
+import { BeatLoader } from "react-spinners";
+
 
 const Favorite = () => {
-  const dispatch = useDispatch(fetchCatalog);
+  // selectors
   const catalog = useSelector(CarCatalog);
   const favorite = useSelector(CarFavorite)
+  const isLoad = useSelector(isLoading)
   const [page, setPage] = useState(1);
+
+  const dispatch = useDispatch(fetchCatalog);
+
   const [filteredCatalog, setFilteredCatalog] = useState([]);
 
   useEffect(() => {
@@ -37,9 +44,11 @@ const Favorite = () => {
   return (
     <MainSection>
       <Filter catalog={catalog} setFilter={setFilteredCatalog} setPage={setPage} />
-      {<CarCard catalog={ searchFavorites() } />}
+      {<CarCard catalog={searchFavorites()} />}
+      {isLoad && <BeatLoader color="#3470FF"/>}
     </MainSection>
   )
 };
 
 export default Favorite;
+

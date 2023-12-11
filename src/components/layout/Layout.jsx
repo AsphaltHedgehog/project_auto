@@ -7,6 +7,11 @@ import Header from "../header/Header";
 // styles
 import { PageContainer } from "./Layout.styled";
 
+// toastify
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 
 const Layout = () => {
   return (
@@ -14,6 +19,7 @@ const Layout = () => {
       <Header />
       <PageContainer>
         <Outlet />
+        <ToastContainer/>
       </PageContainer>
     </>
   );

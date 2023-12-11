@@ -9,8 +9,8 @@ const CarMileageInputs = ({ selectedCarMileageFrom, selectedCarMileageTo, handle
       
       <InputsWrapper>
         <From>From</From>
-        <InputLeft type="number" name="mileageFrom" value={selectedCarMileageFrom} onChange={handleSelectChange}></InputLeft>
-        <InputRight type="number" name="mileageTo" value={selectedCarMileageTo} onChange={handleSelectChange}></InputRight>
+        <InputLeft type="text" name="mileageFrom" value={selectedCarMileageFrom} onChange={handleSelectChange}></InputLeft>
+        <InputRight type="text" name="mileageTo" value={selectedCarMileageTo} onChange={handleSelectChange}></InputRight>
         <To>To</To>
       </InputsWrapper>
     </Label>
