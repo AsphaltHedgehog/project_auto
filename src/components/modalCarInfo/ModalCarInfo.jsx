@@ -79,7 +79,7 @@ const CarModalInfo = ({ carInfo }) => {
             <ConditionInfoContainer><ConditionInfo>Price: <ConditionValue>{ carInfo.rentalPrice }</ConditionValue></ConditionInfo></ConditionInfoContainer>
           </ConditionInfoWrapper>
         </ConditionWrapper>
-          <Button onClick={() => {setRentalPhone(true)}}>{RentalPhone ? '+380730000000' : 'Rental car'}</Button>
+          <a href='tel:+380730000000'><Button onClick={() => {setRentalPhone(true)}}>{RentalPhone ? '+380730000000' : 'Rental car'}</Button></a>
       </Wrapper>
     );
   };
